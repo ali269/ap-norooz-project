@@ -118,7 +118,7 @@ public class Computer {
                 }
             }
         }
-        if (shapes1 > shapes) {
+        if (shapes1 < shapes && shapes1 != 0) {
             a = 2;
             shapes = 0;
         }
@@ -133,7 +133,7 @@ public class Computer {
                 }
             }
         }
-        if (shapes > shapes1) {
+        if (shapes < shapes1 && shapes != 0) {
             a = 3;
             shapes1 = shapes;
             shapes = 0;
@@ -145,7 +145,7 @@ public class Computer {
                 }
             }
         }
-        if (shapes > shapes1) {
+        if (shapes < shapes1 && shapes != 0) {
             a = 4;
         }
         return a;
