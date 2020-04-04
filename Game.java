@@ -290,6 +290,7 @@ public class Game {
             }
             else if (shape1.getUserCode() == userCode) {
                 changeShapes(horizontal, vertical, shape1.getHorizontal(), shape1.getVertical());
+                break;
             }
         }
         for (int z = 1; horizontal - z >= 0; z++) {
@@ -299,6 +300,7 @@ public class Game {
             }
             else if (shape1.getUserCode() == userCode) {
                 changeShapes(horizontal, vertical, shape1.getHorizontal(), shape1.getVertical());
+                break;
             }
         }for (int z = 1; vertical + z < 8; z++) {
             Shape shape1 = findShape(horizontal, vertical + z);
@@ -307,6 +309,7 @@ public class Game {
             }
             else if (shape1.getUserCode() == userCode) {
                 changeShapes(horizontal, vertical, shape1.getHorizontal(), shape1.getVertical());
+                break;
             }
         }for (int z = 1; vertical - z >= 0; z++) {
             Shape shape1 = findShape(horizontal, vertical - z);
@@ -315,6 +318,7 @@ public class Game {
             }
             else if (shape1.getUserCode() == userCode) {
                 changeShapes(horizontal, vertical, shape1.getHorizontal(), shape1.getVertical());
+                break;
             }
         }for (int z = 1; horizontal + z < 8 && vertical + z < 8; z++) {
             Shape shape1 = findShape(horizontal + z, vertical + z);
@@ -323,6 +327,7 @@ public class Game {
             }
             else if (shape1.getUserCode() == userCode) {
                 changeShapes(horizontal, vertical, shape1.getHorizontal(), shape1.getVertical());
+                break;
             }
         }for (int z = 1; horizontal + z < 8 && vertical - z >= 0; z++) {
             Shape shape1 = findShape(horizontal + z, vertical - z);
@@ -331,6 +336,7 @@ public class Game {
             }
             else if (shape1.getUserCode() == userCode) {
                 changeShapes(horizontal, vertical, shape1.getHorizontal(), shape1.getVertical());
+                break;
             }
         }for (int z = 1; horizontal - z >= 0 && vertical + z < 8; z++) {
             Shape shape1 = findShape(horizontal - z, vertical + z);
@@ -339,6 +345,7 @@ public class Game {
             }
             else if (shape1.getUserCode() == userCode) {
                 changeShapes(horizontal, vertical, shape1.getHorizontal(), shape1.getVertical());
+                break;
             }
         }for (int z = 1; horizontal - z >= 0 && vertical - z >= 0; z++) {
             Shape shape1 = findShape(horizontal - z, vertical - z);
@@ -347,6 +354,7 @@ public class Game {
             }
             else if (shape1.getUserCode() == userCode) {
                 changeShapes(horizontal, vertical, shape1.getHorizontal(), shape1.getVertical());
+                break;
             }
         }
 

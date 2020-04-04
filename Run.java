@@ -43,9 +43,9 @@ public class Run {
                         if (availableHomesForUser != 0) {
                             System.out.println("please enter your point(black):");
                             String s = scanner.next();
-                            int ver = Integer.parseInt(s.substring(1)) - 1;
+                            int ver = Integer.parseInt(s.substring(0, 1)) - 1;
                             int hor, count = 0;
-                            char b = s.toUpperCase().charAt(0);
+                            char b = s.toUpperCase().charAt(1);
                             char[] a = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
                             for (char a1: a) {
                                 if (b == a1) {
@@ -87,10 +87,16 @@ public class Run {
                     map.drawMap();
                     System.out.println(user + ": " + game.getSizeOfUser(1));
                     System.out.println("computer" + ": " + game.getSizeOfUser(2));
+                    if (game.getSizeOfUser(1) > game.getSizeOfUser(2))
+                        System.out.println("WINNER: " + user);
+                    else if (game.getSizeOfUser(2) > game.getSizeOfUser(1))
+                        System.out.println("WINNER: computer");
+                    else {
+                        System.out.println("EQUALS");
+                    }
                     break;
                 }
                 case 2: {
-                    int counter = 1;
                     int availableHomeForUser1 = 0, availableHomeForUser2 = 1;
                     System.out.println("please enter user1 name:");
                     String user1 = scanner.next();
@@ -112,12 +118,12 @@ public class Run {
                         map.drawMap();
                         System.out.println(user1 + ": " + game.getSizeOfUser(1));
                         System.out.println(user2 + ": " + game.getSizeOfUser(2));
-                        if (counter % 2 == 1 && availableHomeForUser1 != 0) {
+                        if (availableHomeForUser1 != 0) {
                             System.out.println("please enter area " + user1 + " (black):");
                             String s = scanner.next();
-                            int ver = Integer.parseInt(s.substring(1)) - 1;
+                            int ver = Integer.parseInt(s.substring(0, 1)) - 1;
                             int hor, count = 0;
-                            char b = s.toUpperCase().charAt(0);
+                            char b = s.toUpperCase().charAt(1);
                             char[] a = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
                             for (char a1: a) {
                                 if (b == a1) {
@@ -128,24 +134,31 @@ public class Run {
                             hor = count;
                             System.out.println(hor + " " + ver);
                             game.addShape(hor, ver, 1, 2);
-                            int[][] arr = map.setAvailableHomes();
-                            map.updateMap(game.loadShapesToMap());
-                            availableHomeForUser2 = 0;
-                            for (int i = 0; i < 8; i++) {
-                                for (int j = 0; j < 8; j++) {
-                                    if (arr [i][j] == 0 && game.checkAddingShape(j, i, 2, 1)) {
-                                        arr[i][j] = 3;
-                                        availableHomeForUser2++;
-                                    }
+                        }
+                        else {
+                            System.out.println("there is no available home for " + user1);
+                        }
+                        cls();
+                        int[][] arr = map.setAvailableHomes();
+                        map.updateMap(game.loadShapesToMap());
+                        availableHomeForUser2 = 0;
+                        for (int i = 0; i < 8; i++) {
+                            for (int j = 0; j < 8; j++) {
+                                if (arr [i][j] == 0 && game.checkAddingShape(j, i, 2, 1)) {
+                                    arr[i][j] = 3;
+                                    availableHomeForUser2++;
                                 }
                             }
                         }
-                        else if (availableHomeForUser2 != 0){
+                        map.drawMap();
+                        System.out.println(user1 + ": " + game.getSizeOfUser(1));
+                        System.out.println(user2 + ": " + game.getSizeOfUser(2));
+                        if (availableHomeForUser2 != 0){
                             System.out.println("please enter area " + user2 + " (white):");
                             String s = scanner.next();
-                            int ver = Integer.parseInt(s.substring(1)) - 1;
+                            int ver = Integer.parseInt(s.substring(0, 1)) - 1;
                             int hor, count = 0;
-                            char b = s.toUpperCase().charAt(0);
+                            char b = s.toUpperCase().charAt(1);
                             char[] a = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'};
                             for (char a1: a) {
                                 if (b == a1) {
@@ -154,28 +167,39 @@ public class Run {
                                 count++;
                             }
                             hor = count;
-                            int[][] arr = map.setAvailableHomes();
                             System.out.println(hor + " " + ver);
                             game.addShape(hor, ver, 2, 1);
-                            map.updateMap(game.loadShapesToMap());
-                            for (int i = 0; i < 8; i++) {
-                                for (int j = 0; j < 8; j++) {
-                                    if (arr[i][j] == 0 && game.checkAddingShape(j, i, 1, 2)) {
-                                        arr[i][j] = 3;
-                                        availableHomeForUser1++;
-                                    }
+
+                        }
+                        else {
+                            System.out.println("there is no available home for " + user2);
+                        }
+                        int[][] arr2 = map.setAvailableHomes();
+                        map.updateMap(game.loadShapesToMap());
+                        availableHomeForUser1 = 0;
+                        for (int i = 0; i < 8; i++) {
+                            for (int j = 0; j < 8; j++) {
+                                if (arr2[i][j] == 0 && game.checkAddingShape(j, i, 1, 2)) {
+                                    arr2[i][j] = 3;
+                                    availableHomeForUser1++;
                                 }
                             }
                         }
                         if (game.getSizeOfUser(1) == 0 || game.getSizeOfUser(2) == 0)
                             break;
                         cls();
-                        counter++;
                     }
                     map.drawMap();
                     System.out.println("game end");
                     System.out.println(user1 + ": " + game.getSizeOfUser(1));
                     System.out.println(user2 + ": " + game.getSizeOfUser(2));
+                    if (game.getSizeOfUser(1) > game.getSizeOfUser(2))
+                        System.out.println("WINNER: " + user1);
+                    else if (game.getSizeOfUser(2) > game.getSizeOfUser(1))
+                        System.out.println("WINNER: " + user2);
+                    else {
+                        System.out.println("EQUALS");
+                    }
                     break;
                 }
                 default: {
